@@ -1,0 +1,100 @@
+Sure, here are CSS Module styles for the PacMan.js, Ghost.js, and GameBoard.js components. In a real-world scenario, you would likely have images or more detailed styling for the PacMan and Ghost components.
+
+1. PacMan.module.css
+
+```css
+.pacman {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: yellow;
+  border-radius: 50%;
+}
+```
+
+2. Ghost.module.css
+
+```css
+.ghost {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50%;
+}
+```
+
+3. GameBoard.module.css
+
+```css
+.gameBoard {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+}
+
+.gameOverText {
+  color: red;
+  font-size: 30px;
+  text-align: center;
+}
+```
+
+Then, you can import and use these CSS modules in your components like this:
+
+PacMan.js
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './PacMan.module.css';
+
+const PacMan = ({ position }) => {
+  return <div className={styles.pacman} style={{ left: position.x, top: position.y }} />;
+};
+
+// ...
+```
+
+Ghost.js
+```jsx
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './Ghost.module.css';
+
+const Ghost = ({ position }) => {
+  return <div className={styles.ghost} style={{ left: position.x, top: position.y }} />;
+};
+
+// ...
+```
+
+GameBoard.js
+```jsx
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import PacMan from './PacMan';
+import Ghost from './Ghost';
+import styles from './GameBoard.module.css';
+
+// ...
+
+const GameBoard = ({ initialPacManPos, initialGhostPos }) => {
+  // ...
+
+  return (
+    <div className={styles.gameBoard}>
+      {gameOver ? (
+        <p className={styles.gameOverText}>Game Over</p>
+      ) : (
+        <>
+          <PacMan position={pacManPos} />
+          <Ghost position={ghostPos} />
+        </>
+      )}
+    </div>
+  );
+};
+
+// ...
+```
