@@ -1,0 +1,75 @@
+Here is a CSS module for the `GameStatus` component:
+
+```css
+/* GameStatus.module.css */
+.gameStatus {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.score, .lives {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+```
+This module provides the necessary styles for the `GameStatus` component. It styles the main div with a flex layout, centered alignment, and some padding and margin for spacing. The `.score` and `.lives` divs are also styled with a flex layout and centered alignment. The button is styled with no border, a solid background color, and a hover effect. The disabled button is styled with a light grey background color and a not-allowed cursor. 
+
+To use this CSS Module, you need to import it and use the classes in your component like this:
+
+```jsx
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './GameStatus.module.css';
+
+const GameStatus = ({ initialScore, initialLives }) => {
+  // ... rest of the code
+
+  return (
+    <div className={styles.gameStatus}>
+      <div className={styles.score}>
+        <h2>Score: {score}</h2>
+        <button onClick={handleScoreIncrease}>Increase Score</button>
+      </div>
+      <div className={styles.lives}>
+        <h2>Lives: {lives}</h2>
+        {lives > 0 ? (
+          <button onClick={handleLiveLoss}>Lose Life</button>
+        ) : (
+          <p>No more lives left!</p>
+        )}
+      </div>
+    </div>
+  );
+};
+```
+Always remember to replace the regular CSS classes with the imported styles object from the CSS module.
