@@ -1,0 +1,49 @@
+Sure, here is an example of a CSS module that can be used for the GameComponent:
+
+```css
+/* GameComponent.module.css */
+
+.gameComponent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fpsDisplay {
+    color: #333333;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+```
+
+You can use the CSS module in the GameComponent like so:
+
+```jsx
+// imports
+import React from 'react';
+import useFPS from './useFPS';
+
+// import the css module
+import styles from './GameComponent.module.css';
+
+function GameComponent() {
+  const fps = useFPS();
+
+  return (
+    <div className={styles.gameComponent}>
+      <p className={styles.fpsDisplay}>FPS: {fps}</p>
+      {/* Your game or animation here */}
+    </div>
+  );
+}
+
+export default GameComponent;
+```
+
+In this case, the `gameComponent` class gives the GameComponent a little padding, centers its children both horizontally and vertically, and gives it a light gray background color with a small drop shadow for a bit of depth. The `fpsDisplay` class makes the FPS display a bit bigger and bolder, and adds a little margin at the bottom.
