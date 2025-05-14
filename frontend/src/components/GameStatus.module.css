@@ -1,0 +1,62 @@
+Based on the provided React component and CSS, here is the CSS module:
+
+```css
+/* GameStatus.module.css */
+.gameStatus {
+  text-align: center;
+  padding: 10px;
+  margin-top: 30px;
+  background-color: #f7f7f7;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
+
+.gameStatus h2 {
+  color: #333;
+}
+```
+
+And here is the updated React component to use this CSS module:
+
+```jsx
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import styles from "./GameStatus.module.css";
+
+/**
+ * GameStatus component
+ * @param {Object} props - props passed from parent component
+ * @param {number} props.score - current game score
+ * @returns {React.Node} - React component
+ */
+const GameStatus = ({ score }) => {
+  const WINNING_SCORE = 100;
+  const LOSING_SCORE = 0;
+
+  const [gameStatus, setGameStatus] = useState("");
+
+  useEffect(() => {
+    if (score >= WINNING_SCORE) {
+      setGameStatus("You won the game!");
+    } else if (score <= LOSING_SCORE) {
+      setGameStatus("You lost the game.");
+    } else {
+      setGameStatus("Game in progress...");
+    }
+  }, [score]);
+
+  return (
+    <div className={styles.gameStatus}>
+      <h2>{gameStatus}</h2>
+    </div>
+  );
+};
+
+GameStatus.propTypes = {
+  score: PropTypes.number.isRequired,
+};
+
+export default GameStatus;
+```
+
+In this updated component, we are importing the CSS module and using the styles object to apply the styles. This prevents CSS class name conflicts and makes the component's styling self-contained and more maintainable.
