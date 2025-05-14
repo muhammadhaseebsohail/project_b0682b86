@@ -1,0 +1,29 @@
+To use CSS modules in React, you should name your CSS files with the .module.css extension. Your CSS class names will be scoped locally to the component, and you won't need to worry about class name collisions. Here's how you could create a CSS module for the Ghost component:
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './Ghost.module.css';
+
+// ... (rest of the component code)
+
+  return <div className={styles.ghost} style={style} />;
+};
+
+// ... (rest of the component code)
+```
+
+Then you should create a Ghost.module.css file in the same directory as your Ghost component:
+
+```css
+/* Ghost.module.css */
+.ghost {
+  position: absolute;
+  background-color: purple;
+  border-radius: 50%;
+}
+```
+
+This is the CSS module for the Ghost component. The ghost class applies absolute positioning, a purple background color, and a border-radius of 50% to make the ghost round. The CSS classes are locally scoped to the Ghost component, so they won't conflict with any other CSS classes in your project.
+
+Using CSS modules, you can write CSS that's scoped locally to the component, making it easier to work with CSS in a large project. You don't need to worry about naming collisions or the order in which your CSS files are loaded. You can also import and use CSS classes in your JavaScript code, which can be useful for dynamically applying styles.
