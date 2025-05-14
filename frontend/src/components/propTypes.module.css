@@ -1,0 +1,72 @@
+Sure. In this case, we can create a CSS module named `BonusFruitList.module.css`. This file will contain the styles for the `FruitList` and `FruitItem` components.
+
+```css
+/* BonusFruitList.module.css */
+.fruitList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.fruitItem {
+  list-style: none;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+}
+```
+
+After creating the CSS module, we would need to import and use it in our component:
+
+```jsx
+// Necessary Imports
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './BonusFruitList.module.css';
+
+// PropTypes
+const propTypes = {
+  bonusFruits: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      bonusPoints: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
+
+// Main Component
+const BonusFruitList = ({ bonusFruits }) => {
+
+  // we could use this state to show some loading indication
+  const [isLoading, setIsLoading] = useState(false);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!bonusFruits || bonusFruits.length === 0) {
+    return <p>No bonus fruits available</p>;
+  }
+
+  return (
+    <ul className={styles.fruitList}>
+      {bonusFruits.map((fruit, index) => (
+        <li className={styles.fruitItem} key={index}>
+          <img src={fruit.image} alt={fruit.name} />
+          <h2>{fruit.name}</h2>
+          <p>+ {fruit.bonusPoints} points</p>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+BonusFruitList.propTypes = propTypes;
+
+export default BonusFruitList;
+```
+
+The `styles` object contains the classnames from our CSS module. We can apply these classnames to our JSX elements with the `className` attribute. The benefit of this approach is that the classnames are automatically made unique to avoid conflicts in the global namespace.
