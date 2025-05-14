@@ -1,0 +1,76 @@
+Here's a CSS module that provides styles for the HighScore component:
+
+```css
+/* HighScore.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.score {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.loading, .error {
+  color: #999;
+  font-style: italic;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+```
+
+You would then need to import the CSS module in your component file like this:
+
+```jsx
+// Necessary imports
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import styles from './HighScore.module.css'; // Import CSS module
+
+// Rest of your component...
+```
+
+And use the styles from the CSS module:
+
+```jsx
+return (
+  <div className={styles.container}>
+    {isLoading ? (
+      <p className={styles.loading}>Loading...</p>
+    ) : errorMessage ? (
+      <p className={styles.error}>Error: {errorMessage}</p>
+    ) : (
+      <p className={styles.score}>High Score: {highScore}</p>
+    )}
+    <button onClick={() => saveHighScore(100)}>Save High Score</button>
+  </div>
+);
+```
