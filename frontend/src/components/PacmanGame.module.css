@@ -1,0 +1,66 @@
+Sure, here's the CSS module for the PacmanGame component:
+
+```css
+/* PacmanGame.module.css */
+
+.pacmanGame {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+}
+
+.cell0 {
+  background-color: black;
+}
+
+.cell1 {
+  background-color: yellow;
+}
+
+.cell2 {
+  background-color: blue;
+}
+```
+And here's how you would import and use the CSS module in the PacmanGame component:
+
+```javascript
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './PacmanGame.module.css';
+
+/**
+ * PacmanGame component
+ * @param {Array<Array<number>>} props.layout - 2D array representing game layout
+ */
+const PacmanGame = ({ layout }) => {
+  const [gameLayout, setGameLayout] = useState(layout);
+
+  return (
+    <div className={styles.pacmanGame}>
+      {gameLayout.map((row, i) => (
+        <div key={i} className={styles.row}>
+          {row.map((cell, j) => (
+            <div key={j} className={`${styles.cell} ${styles[`cell${cell}`]}`}></div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+PacmanGame.propTypes = {
+  layout: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+};
+
+export default PacmanGame;
+```
+This way, the class names in the CSS module are locally scoped to the component and won't conflict with class names in other parts of your application. The styles are imported as an object, and you can access the class names as properties on the object. In the className attribute, you can use template literals to dynamically generate the class name based on the cell value.
