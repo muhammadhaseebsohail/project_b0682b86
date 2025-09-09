@@ -1,0 +1,41 @@
+Sure, here is the CSS module for your PacDot component:
+
+```css
+// PacDot.module.css
+
+.pacDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  visibility: visible;
+}
+
+.eaten {
+  visibility: hidden;
+}
+```
+
+And here's the updated React component that uses this CSS module:
+
+```jsx
+// PacDot.tsx
+
+// Importing necessary modules
+import React from 'react';
+import styles from './PacDot.module.css';
+
+// TypeScript interface for PacDot props
+interface PacDotProps {
+  eaten: boolean;
+}
+
+// PacDot functional component
+const PacDot: React.FC<PacDotProps> = ({ eaten }) => {
+  return <div className={`${styles.pacDot} ${eaten ? styles.eaten : ""}`}></div>;
+};
+
+export default PacDot;
+```
+
+In the updated component, we import the CSS module `styles` and then use it to apply the styles to the `div`. If the `eaten` prop is `true`, we apply the `eaten` style from our module which hides the dot.
